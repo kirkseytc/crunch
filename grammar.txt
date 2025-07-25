@@ -1,0 +1,54 @@
+<equation> ::= <md_equ> <as_oper> <equation> | <md_equ>
+<md_equ> ::= <wrapped_equ> <md_oper> <md_equ> | <wrapped_equ>
+<wrapped_equ> ::= "(" <equation> ")" | <number>
+<number> ::= <digit> | <digit> <number> 
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<as_oper> ::= "+" | "-"
+<md_oper> ::= "*" | "/"
+
+example: "2+2"
+<equation>
+<md_equ> <as_oper> <equation>
+<wrapped_equ> <as_oper> <equation>
+<number> <as_oper> <equation>
+<digit> <as_oper> <equation>
+2 <as_oper> <equation>
+2+ <equation>
+2+ <md_equ>
+2+ <wrapped_equ>
+2+ <number>
+2+ <digit>
+2+2
+
+example: "123*(456+789)"
+<equation>
+<md_equ>
+<wrapped_equ> <md_oper> <md_equ>
+<number> <md_oper> <md_equ>
+<digit> <number> <md_oper> <md_equ>
+1 <number> <md_oper> <md_equ>
+1 <digit> <number> <md_oper> <md_equ>
+12 <number> <md_oper> <md_equ>
+12 <digit> <md_oper> <md_equ>
+123 <md_oper> <md_equ>
+123* <md_equ>
+123* <wrapped_equ>
+123*( <equation> )
+123*( <md_equ> <as_oper> <equation> )
+123*( <wrapped_equ> <as_oper> <equation> )
+123*( <number> <as_oper> <equation> )
+123*( <digit> <number> <as_oper> <equation> )
+123*(4 <number> <as_oper> <equation> )
+123*(4 <digit> <number> <as_oper> <equation> )
+123*(45 <number> <as_oper> <equation> )
+123*(45 <digit> <as_oper> <equation> )
+123*(456 <as_oper> <equation> )
+123*(456+ <equation> )
+123*(456+ <md_equ> )
+123*(456+ <wrapped_equ> )
+123*(456+ <number> )
+123*(456+ <digit> <number> )
+123*(456+7 <number> )
+123*(456+7 <digit> <number> )
+123*(456+78 <number> )
+123*(456+789)
